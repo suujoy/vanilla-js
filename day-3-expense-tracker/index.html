@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Expense Tracker</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <main>
+            <section>
+                <div class="top">
+                    <input
+                        class="inp top-child"
+                        type="text"
+                        placeholder="Expense Name"
+                    />
+                    <input
+                        class="inp top-child"
+                        type="number"
+                        placeholder="Amount"
+                    />
+                    <select class="select top-child">
+                        <option disabled selected class="select-text">Select</option>
+                        <option class="select-type" value="expense">
+                            Expense
+                        </option>
+                        <option class="select-type" value="income">
+                            Income
+                        </option>
+                    </select>
+                    <button class="add top-child">Add</button>
+                </div>
+                <div class="middle">
+                    <!-- <div class="income mid-child">
+                        <p>Salary</p>
+                        <div class="right">
+                            <div class="amount">+$2000.00</div>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </div>
+                    <div class="expense mid-child">
+                        <p>Groceries</p>
+                        <div class="right">
+                            <div class="amount">-$299.00</div>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </div> -->
+                    
+                </div>
+                <div class="bottom">
+                    <div class="bottom-child t-income">
+                        <p>Total Income :$</p> 
+                        <span class="inc">200</span>
+                    </div>
+                    <div class="bottom-child t-expense">
+                        <p>Total Expense :$</p>
+                        <span class="exp">100</span>
+                    </div>
+                    <div class="bottom-child balance">
+                        <p>Balance :$</p>
+                        <span class="bal">100</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>

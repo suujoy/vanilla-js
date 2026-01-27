@@ -21,7 +21,7 @@ const renderFunction = () => {
     let sum = "";
 
     storage.forEach((budget) => {
-        sum += `<div class="${budget.type === "Income" ? "income" : "expense"} mid-child">
+        sum += `<div id='${budget.id}' class="${budget.type === "Income" ? "income" : "expense"} mid-child">
                 <p>${budget.name}</p>
                 <div class="right">
                     <div class="amount">${budget.type === "Income" ? "+" : "-"}$${budget.amount}.00</div>
@@ -36,7 +36,7 @@ const setLocalStorage = () => {
     store = JSON.parse(localStorage.getItem("storeData"));
 
     storage = store ? store : [];
-    renderFunction()
+    renderFunction();
 };
 setLocalStorage();
 
@@ -51,10 +51,48 @@ const storageFunction = () => {
 
     storage.push(budget);
     localStorage.setItem("storeData", JSON.stringify(storage));
+
+    amountInput.value = "";
+    expenseNameInput.value = "";
+};
+
+const calculationFunction = () => {
+    let TIncome = 0;
+    let TExpanse = 0;
+
+    storage.forEach((item) => {
+        const amount = Number(item.amount);
+
+        if (item.type === "Income") {
+            TIncome += amount;
+        } else {
+            TExpanse += amount;
+        }
+    });
+
+    totalExpense.textContent = TExpanse;
+    totalIncome.textContent = TIncome;
+    balance.textContent = TIncome - TExpanse;
 };
 
 addButton.addEventListener("click", () => {
     storageFunction();
     renderFunction();
-    console.log(storage);
+    calculationFunction();
+});
+
+let tempStorage = [];
+let id = "";
+middleContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete")) {
+        const clickedId = event.target.closest(".mid-child");
+        id = clickedId.id;
+        
+        tempStorage = storage.filter((item) => item.id !== id);
+        storage = tempStorage;
+        
+        localStorage.setItem("storeData", JSON.stringify(storage));
+        calculationFunction()
+        renderFunction();
+    }
 });
